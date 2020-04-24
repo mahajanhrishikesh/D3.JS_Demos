@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>D3 Basics - Intro</title>
+        <!--D3 CDN-->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+    </head>
+    <body>
+        <h3> This is a D3 demo! </h3>
+        <h3> D3 stands for data driven document </h3>
+        <ul class="items">
+            <li>Item</li>
+            <li>Item</li>
+            <li>Item</li>
+            <li>Item</li>
+            <li>Item</li>
+            <li>Item</li>
+        </ul>
+    </body>
+    <script>
+        d3.selectAll('h3')
+        .style('color', 'blue')
+        d3.selectAll('li:nth-child(Even)')
+        .style('color', 'red')
+        d3.selectAll('li:nth-child(Odd)')
+        .style('color', 'yellow')
+    </script>
+</html>

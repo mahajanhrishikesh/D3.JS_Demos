@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>D3 Basics - Data Binding</title>
+        <!--D3 CDN-->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <h3> Junk Bliss </h3>
+        <h3> FOOD!! FOOD!! FOOD!! </h3>
+        <h4> ****Our Menu**** </h4>
+        <table class="table-items">
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>Fries</td>
+                <td class="table-items-data"></td>
+            </tr>
+            <tr>
+                <td>Burger</td>
+                <td class="table-items-data"></td>
+            </tr>
+            <tr>
+                <td>Chips</td>
+                <td class="table-items-data"></td>
+            </tr>
+            <tr>
+                <td>Soda</td>
+                <td class="table-items-data"></td>
+            </tr>
+        </table>
+        </center>
+    </body>
+    <script>
+        var arr = [70,80,120,30, 10,40,200,85]
+        var tableFiller = d3.select('body').select('.table-items').selectAll('.table-items-data')
+          .data(arr)
+          .text(function(d){
+            return '$'+d
+          })
+          
+        tableFiller.enter().append('tr')
+                   .html(function(d){
+                     return '<td>Mystery Food</td><td>$'+d+'</td>';
+                   })
+                   
+        tableFiller.exit().remove();
+        
+        d3.selectAll('h3')
+        .style('color', 'blue')
+    </script>
+</html>
