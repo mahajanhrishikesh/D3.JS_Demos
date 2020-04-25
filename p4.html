@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>D3 Basics - SVG Shapes </title>
+        <!--D3 CDN-->
+        <script src="https://d3js.org/d3.v4.min.js"></script>        
+    </head>
+    <body>
+        <center>
+            <h1> Junk Bliss Resto Floor Plan </h1>
+            <svg class="kitchen" width="400" height="400" style="background: #f4f4f4">
+                <rect height="300" width="300" style="fill:rgb(250,150,0); stroke:rgb(0,0,0); stroke-width:1;" x="50", y="50">
+            </svg>
+            <svg class="floor" width="400" height="400" style="background: #f4f4f4"></svg>
+        </center>
+    </body>
+    <script>
+        for(var j = 0; j<3; j++)
+        {
+            for(var i=0;i<3;i++)
+            {
+                d3.select('.floor')
+                  .append('circle')
+                  .attr('cx', i*125 + 80)
+                  .attr('cy', j*125 + 50)
+                  .attr('r', 40)
+                  .style('fill', 'blue')
+                  .style('stroke', 'black')
+                  .style('stroke-width', 1)
+                  
+                d3.select('.floor')
+                  .append('rect')
+                  .attr('x', i*125 + 25)
+                  .attr('y', j*125 + 60)
+                  .attr('height', 15)
+                  .attr('width', 10)
+                  .style('fill', 'red')
+                  .style('stroke', 'black')
+                  .style('stroke-width', 1)
+                  
+                d3.select('.floor')
+                  .append('rect')
+                  .attr('x', i*125 + 25)
+                  .attr('y', j*125 + 30)
+                  .attr('height', 15)
+                  .attr('width', 10)
+                  .style('fill', 'red')
+                  .style('stroke', 'black')
+                  .style('stroke-width', 1)
+                  
+                d3.select('.floor')
+                  .append('rect')
+                  .attr('x', i*125 + 125)
+                  .attr('y', j*125 + 60)
+                  .attr('height', 15)
+                  .attr('width', 10)
+                  .style('fill', 'red')
+                  .style('stroke', 'black')
+                  .style('stroke-width', 1)
+                  
+                d3.select('.floor')
+                  .append('rect')
+                  .attr('x', i*125 + 125)
+                  .attr('y', j*125 + 30)
+                  .attr('height', 15)
+                  .attr('width', 10)
+                  .style('fill', 'red')
+                  .style('stroke', 'black')
+                  .style('stroke-width', 1)
+            }
+        }   
+    </script>
+</html>
