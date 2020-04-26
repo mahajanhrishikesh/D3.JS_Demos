@@ -18,27 +18,27 @@
             <table class="stock-data">
                 <tr>
                     <th>Open</th>
-                    <td> 182.04 </td>
+                    <td class="stockdata">  </td>
                     <th>Close</th>
-                    <td> 183.26 </td>
+                    <td class="stockdata">  </td>
                 </tr>
                 <tr>
                     <th>Market Cap</th>
-                    <td> 130.259B </td>
+                    <td class="stockdata">  </td>
                     <th>PE Ratio</th>
-                    <td> 26.39 </td>
+                    <td class="stockdata">  </td>
                 </tr>
                 <tr>
                     <th> EPS </th>
-                    <td> 7.88 </td>
+                    <td class="stockdata">  </td>
                     <th> Dividend </th>
-                    <td> 5.59 </td>
+                    <td class="stockdata">  </td>
                 </tr>
                 <tr>
                     <th> Dividend Yield </th>
-                    <td> 2.75% </td>
+                    <td class="stockdata">  </td>
                     <th> Volume </th>
-                    <td> 3,114,138 </td>
+                    <td class="stockdata">  </td>
                 </tr>
             </table>
             <div id="chart"></div>
@@ -47,6 +47,14 @@
     <script>
     
     //     var revenueData = [175, 125, 420, 300, 450,900,345,567]
+        
+        var tableData = [182.04, 183.26, '130.259B', 26.39, 7.88, 5.59, '2.75%', '3,114,138']
+        
+        d3.selectAll('.stockdata')
+            .data(tableData)
+            .text(function(d){
+                return d
+              })
         
         var revenueData = [];
         var dataCount = 43;
