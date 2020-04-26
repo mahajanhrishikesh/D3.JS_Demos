@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>D3 Basics - CSV </title>
+        <!--D3 CDN-->
+        <script src="https://d3js.org/d3.v4.min.js"></script>      
+        
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+          
+    </head>
+    <body>
+        <center>
+            <h1> S&P 500 Top 10 </h1>
+            <h4> Stock Ticker -> <span id="tickerName"></span> </h4>
+            <h4> Select Ticker </h4>
+            <select id="selectTicker" onclick="changeData()">
+                <option value="MSFT">Microsoft</option>
+                <option value="AAPL">Apple</option>
+                <option value="AMZN">Amazon</option>
+                <option value="FB">Facebook Inc.</option>
+                <option value="BRK.B">Berkshire Hathaway Inc.</option>
+                <option value="GOOG">Alphabet Inc.</option>
+                <option value="JNJ">Johnson & Johnson</option>
+                <option value="V">Visa</option>
+                <option value="JPM">JP Morgan</option>
+                <option value="WMT">Walmart</option>
+            <select>
+        </center>
+    </body>
+    <script>
+        var tickName = null;
+        function changeData() {
+            tickName = document.getElementById("selectTicker").value;
+            document.getElementById("tickerName").innerHTML = tickName;
+            d3.csv("data\\"+tickerName+"_data.csv",function(data) {
+                console.log("Hello")
+            });
+        }
+            
+    </script>
+</html>
