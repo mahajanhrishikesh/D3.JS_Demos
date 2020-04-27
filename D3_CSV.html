@@ -5,17 +5,36 @@
         <script src="https://d3js.org/d3.v5.min.js"></script>      
         
         <style>
-            table, th, td {
+            table, td {
                 border: 1px solid black;
+            }
+            header {
+                background-color: #2d1152;
+                color:white;
+            }   
+            
+            th {
+                font-family: OpenSans-Regular;
+                font-size: 18px;
+                color: #fff;
+                background-color: #2d1152;
+                line-height: 1.2;
+                font-weight: unset;
+            }
+            select, option {
+                border-radius: 5px;
+                padding: 15px;
+                font-size: 18px;
             }
         </style>
           
     </head>
-    <body>
+    <body style="background-color:lightgoldenrodyellow">
         <center>
-            <h1> S&P 500 Top 10 </h1>
+            <header>
+                <h1> S&P 500 Top 10 </h1>
+            </header>
             <h4> Stock Ticker -> <span id="tickerName"></span> </h4>
-            <h4> Select Ticker </h4>
             <select id="selectTicker" onclick="changeData()">
                 <option value="MSFT">Microsoft</option>
                 <option value="AAPL">Apple</option>
@@ -29,7 +48,8 @@
                 <option value="WMT">Walmart</option>
             <select>
             <br>
-            <div id="lineChart1"></div>
+            <div id="lineChart1" style="background-color:lightgoldenrodyellow;"></div>
+            <h4> <span id="tickerName#2"></span> </h4>
             <table id="stockTable">
                    
             </table>
@@ -59,6 +79,7 @@
             document.getElementById("stockTable").innerHTML = '';
             tickName = document.getElementById("selectTicker").value;
             document.getElementById("tickerName").innerHTML = tickName;
+            document.getElementById("tickerName#2").innerHTML = tickName;
             d3.csv("Data/"+tickName+"_data.csv")
               .then(function(data) {
                   function tabulate(data, columns) {
@@ -140,7 +161,7 @@
                 
                 // set the dimensions and margins of the graph
                 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-                width = 460 - margin.left - margin.right,
+                width = 900 - margin.left - margin.right,
                 height = 400 - margin.top - margin.bottom;
 
                 // append the svg object to the body of the page
