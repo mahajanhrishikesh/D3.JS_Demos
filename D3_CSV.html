@@ -99,7 +99,7 @@
                     .data(data)
                     .enter()
                     .append("tr");
-                    var i = 0;
+                    
                     var cells = rows.selectAll("td")
                     .data(function (row) {
                         return columns.map(function (column) {
@@ -110,31 +110,6 @@
                     .append("td")
                     .attr("style", "font-family: 'Lato'")
                         .html(function (d) {
-                            if(i%6===0)
-                            {
-                                date.push(d.value)
-                            }
-                            else if(i%6 === 1)
-                            {
-                                open.push(d.value)
-                            }
-                            else if(i%6 === 2)
-                            {
-                                high.push(d.value)
-                            }
-                            else if(i%6 === 3)
-                            {
-                                low.push(d.value)
-                            }
-                            else if(i%6 === 4)
-                            {
-                                //close.push(d.value)
-                            }
-                            else if(i%6 === 5)
-                            {
-                                volume.push(d.value)
-                            }
-                            i++;
                             return d.value;
                         });
 
