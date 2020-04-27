@@ -2,7 +2,7 @@
     <head>
         <title>D3 Basics - CSV </title>
         <!--D3 CDN-->
-        <script src="https://d3js.org/d3.v4.min.js"></script>      
+        <script src="https://d3js.org/d3.v5.min.js"></script>      
         
         <style>
             table, th, td {
@@ -22,23 +22,160 @@
                 <option value="AMZN">Amazon</option>
                 <option value="FB">Facebook Inc.</option>
                 <option value="BRK.B">Berkshire Hathaway Inc.</option>
-                <option value="GOOG">Alphabet Inc.</option>
+                <option value="GOOGL">Alphabet Inc.</option>
                 <option value="JNJ">Johnson & Johnson</option>
                 <option value="V">Visa</option>
                 <option value="JPM">JP Morgan</option>
                 <option value="WMT">Walmart</option>
             <select>
+            <br>
+            <div id="lineChart1"></div>
+            <table id="stockTable">
+                   
+            </table>
+            <span  id="output"></span>
         </center>
     </body>
     <script>
         var tickName = null;
+        var stockData = [];
+        var date = []
+        var open = []
+        var high = []
+        var low = []
+        var close = []
+        var volume = []
+        var dateObs = []
         function changeData() {
+            document.getElementById("stockTable").innerHTML = '';
             tickName = document.getElementById("selectTicker").value;
             document.getElementById("tickerName").innerHTML = tickName;
-            d3.csv("data\\"+tickerName+"_data.csv",function(data) {
-                console.log("Hello")
-            });
+            d3.csv("Data/"+tickName+"_data.csv")
+              .then(function(data) {
+                  function tabulate(data, columns) {
+                    var table = d3.select('#stockTable')
+                    , columnNames = ["", "", "", "", "", ""]
+                    , thead = table.append("thead")
+                    , tbody = table.append("tbody");
+                    
+                    thead.append("tr")
+                    .selectAll("th")
+                    .data(columns)
+                    .enter()
+                    .append("th")
+                    .text(function (columnNames) { return columnNames; });
+                    
+                    var rows = tbody.selectAll("tr")
+                    .data(data)
+                    .enter()
+                    .append("tr");
+                    var i = 0;
+                    var cells = rows.selectAll("td")
+                    .data(function (row) {
+                        return columns.map(function (column) {
+                            return { column: column, value: row[column] };
+                        });
+                    })
+                    .enter()
+                    .append("td")
+                    .attr("style", "font-family: 'Lato'")
+                        .html(function (d) {
+                            if(i%6===0)
+                            {
+                                date.push(d.value)
+                            }
+                            else if(i%6 === 1)
+                            {
+                                open.push(d.value)
+                            }
+                            else if(i%6 === 2)
+                            {
+                                high.push(d.value)
+                            }
+                            else if(i%6 === 3)
+                            {
+                                low.push(d.value)
+                            }
+                            else if(i%6 === 4)
+                            {
+                                //close.push(d.value)
+                            }
+                            else if(i%6 === 5)
+                            {
+                                volume.push(d.value)
+                            }
+                            i++;
+                            return d.value;
+                        });
+
+                    return table;
+                  };
+                  
+                  tabulate(data, ["date", "open", "high", "low", "close", "volume"])
+              });
+              drawLineChart1("Data/"+tickName+"_data.csv");
         }
+        
+        
+        function drawLineChart1(url){
+            document.getElementById('lineChart1').innerHTML = '';
+            
+             
+            var parseDate = d3.timeParse('%Y-%m-%d')
+            close = []
+            d3.csv(url).then(function(data){
+                for(var i = 0; i< data.length; i++){
+                    dateObs.push(parseDate(data[i]['date']));
+                    close.push(data[i]['close']);
+                }
+                
+                // set the dimensions and margins of the graph
+                var margin = {top: 10, right: 30, bottom: 30, left: 60},
+                width = 460 - margin.left - margin.right,
+                height = 400 - margin.top - margin.bottom;
+
+                // append the svg object to the body of the page
+                var svg = d3.select("#lineChart1")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+                
+                var x = d3.scaleTime()
+                .domain([dateObs[0], dateObs[dateObs.length-1]])
+                .range([ 0, width ]);
+                svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x));
+                
+                var y = d3.scaleLinear()
+                .domain([0, d3.max(close)])
+                .range([ height, 0 ]);
+                svg.append("g")
+                .call(d3.axisLeft(y));
+                
+                newData = {date: dateObs, close:close}
+                console.log(newData)
+                
+                arr = []
+                for(var i=0; i<newData['date'].length; i++){
+                    arr[i] = [x(newData['date'][i]), y(newData["close"][i])]
+                }
+                
+                console.log(arr)
+                svg.append("path")
+                  .datum(newData)
+                  .attr("fill", "none")
+                  .attr("stroke", "steelblue")
+                  .attr("stroke-width", 1.5)
+                  .attr("d", d3.line()(arr))
+                    
+              })  
+                        
+            }
+              
             
     </script>
 </html>
