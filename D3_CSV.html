@@ -4,7 +4,9 @@
         <!--D3 CDN-->
         <script src="https://d3js.org/d3.v5.min.js"></script>      
         
+        <!--Styles for the table, select tag and graph-->
         <style>
+            
             table, td {
                 border: 1px solid black;
             }
@@ -32,8 +34,9 @@
     <body style="background-color:lightgoldenrodyellow">
         <center>
             <header>
-                <h1> S&P 500 Top 10 </h1>
+                <h1> S&P 500 Top-10 Historical Data</h1>
             </header>
+            <!--Selection tag for selecting current ticker, will trigger data refreshing on click-->
             <h4> Stock Ticker -> <span id="tickerName"></span> </h4>
             <select id="selectTicker" onclick="changeData()">
                 <option value="MSFT">Microsoft</option>
@@ -74,7 +77,8 @@
                         .style('border', '1px #333 solid')
                         .style('border-radius', '5px')
                         .style('opacity', '0')
-                        
+          
+        //Tabulates data and then calls graph making function              
         function changeData() {
             document.getElementById("stockTable").innerHTML = '';
             tickName = document.getElementById("selectTicker").value;
@@ -116,6 +120,7 @@
                     return table;
                   };
                   
+                  //tabulate accepts column names as well
                   tabulate(data, ["date", "open", "high", "low", "close", "volume"])
               });
               drawLineChart1("Data/"+tickName+"_data.csv");
