@@ -43,8 +43,8 @@
     </body>
     <script>
         var margin = {top: 10, right: 10, bottom: 10, left: 10},
-        width = 445 - margin.left - margin.right,
-        height = 445 - margin.top - margin.bottom;
+        width = 1500 - margin.left - margin.right,
+        height = 1500 - margin.top - margin.bottom;
         
         var svg = d3.select("#my_dataviz")
         .append("svg")
@@ -59,7 +59,7 @@
 
           // stratify the data: reformatting for d3.js
           var root = d3.stratify()
-            .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
+            .id(function(d) { console.log(data);return d.name; })   // Name of the entity (column name is name in csv)
             .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
             (data);
           root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
@@ -93,7 +93,7 @@
             .append("text")
               .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
               .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
-              .text(function(d){ return d.data.name})
+              .text(function(d){ return d.data.name + " " +d.data.value})
               .attr("font-size", "15px")
               .attr("fill", "white")
         })
