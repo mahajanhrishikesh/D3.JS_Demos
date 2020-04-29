@@ -1,5 +1,5 @@
 name,parent,value
-DJIA, , 
+DJIA,,
 3M,DJIA,90.96
 American Express,DJIA,71.34
 Apple,DJIA,1230
