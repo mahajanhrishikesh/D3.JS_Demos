@@ -1,0 +1,32 @@
+name,parent,value
+DJIA, , 
+3M,DJIA,90.96
+American Express,DJIA,71.34
+Apple,DJIA,1230
+Boeing,DJIA,73.66
+Caterpillar,DJIA,63.77
+Chevron,DJIA,168.29
+Cisco,DJIA,181.64
+Coca-Cola,DJIA,201.73
+Disney,DJIA,192.88
+Dow,DJIA,26.54
+Exxon Mobile,DJIA,190.83
+Goldman Sachs,DJIA,64.32
+Home Depot,DJIA,234.26
+IBM,DJIA,112.66
+Intel,DJIA,250.86
+Johnson&Johnson,DJIA,402.2
+JP Morgan Chase,DJIA,291.74
+McDonald’s,DJIA,138.63
+Merck,DJIA,206.96
+Microsoft,DJIA,1300
+Nike,DJIA,110.6
+Pfizer,DJIA,210.59
+Procter&Gamble,DJIA,290.89
+Travelers,DJIA,26.6
+Raytheon,DJIA,74.5
+United Health,DJIA,274.25
+Verizon,DJIA,240.09
+Visa,DJIA,368.89
+Walgreens,DJIA,39.35
+Walmart,DJIA,364.02
