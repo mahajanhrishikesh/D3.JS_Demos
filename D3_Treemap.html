@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>D3 Basics - CSV Data </title>
+        <title>D3 Basics - Simple Treemap </title>
         <!--D3 CDN-->
         <script src="https://d3js.org/d3.v5.min.js"></script>      
         
@@ -38,7 +38,7 @@
             </center>
         </header>
         <center>
-            <div id="my_dataviz"></div>
+            <div id="treemap1"></div>
         </center>
     </body>
     <script>
@@ -46,7 +46,7 @@
         width = 1500 - margin.left - margin.right,
         height = 1500 - margin.top - margin.bottom;
         
-        var svg = d3.select("#my_dataviz")
+        var svg = d3.select("#treemap1")
         .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
@@ -83,7 +83,7 @@
               .attr('width', function (d) { return d.x1 - d.x0; })
               .attr('height', function (d) { return d.y1 - d.y0; })
               .style("stroke", "black")
-              .style("fill", "#69b3a2");
+              .style("fill", "#2d1152");
 
           // and to add the text labels
           svg
