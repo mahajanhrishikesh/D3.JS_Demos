@@ -7,4 +7,5 @@ This repository contains D3 visualization basics and demos, it contains the foll
   <li>3. D3 SVG Manipulation</li> 
   <li>4. D3 Basic SVG Charts</li>
   <li>5. D3 Advanced Charts with data from CSV</li>
+  <li>5. D3 Advanced Charts added simple Treemap implementation</li>
 </ul>
