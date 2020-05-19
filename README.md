@@ -1,5 +1,5 @@
 # D3.JS_Demos
-<h1>Data Driven Document Library Demos</h1>
+<h1>Data Driven Document Demos</h1>
 This repository contains D3 visualization basics, it contains the following codes:
 <ul>
   <li>1. D3 Basics</li>
